@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>@Page.Title</title>
+        <script src="../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+        <link rel="import" href="../bower_components/iron-flex-layout/classes/iron-flex-layout.html" />
+        <link rel="import" href="../custom_elements/navigation-drawer.html" />
+        @RenderSection("head", required: false)
+    </head>
+<body class="fullbleed horizontal layout">
+    <style>
+        .body {
+            margin-top: 20px;
+        }
+    </style>
+    <navigation-drawer></navigation-drawer>
+    <div class="flex body">
+        @RenderBody()
+    </div>
+</body>
+</html>

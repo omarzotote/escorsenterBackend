@@ -1,0 +1,789 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="escorcenterdbModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="field">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="text" Nullable="false" />
+          <Property Name="description" Type="text" />
+          <Property Name="address" Type="text" Nullable="false" />
+          <Property Name="longitude" Type="float" Nullable="false" />
+          <Property Name="latitude" Type="float" Nullable="false" />
+          <Property Name="sport" Type="int" Nullable="false" />
+          <Property Name="enabled" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="league">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="text" Nullable="false" />
+          <Property Name="Region" Type="int" Nullable="false" />
+          <Property Name="Description" Type="text" />
+          <Property Name="Logo" Type="text" />
+          <Property Name="Enabled" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="match">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="week" Type="int" Nullable="false" />
+          <Property Name="date" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="team1" Type="int" Nullable="false" />
+          <Property Name="scoreTeam1" Type="tinyint" Nullable="false" />
+          <Property Name="team2" Type="int" Nullable="false" />
+          <Property Name="scoreTeam2" Type="tinyint" Nullable="false" />
+          <Property Name="field" Type="int" Nullable="false" />
+          <Property Name="details" Type="text" Nullable="false" />
+          <Property Name="finished" Type="bool" Nullable="false" />
+          <Property Name="winner" Type="int" Nullable="false" />
+          <Property Name="draw" Type="bool" Nullable="false" />
+          <Property Name="forfeit" Type="bool" Nullable="false" />
+          <Property Name="enabled" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="notification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LeagueId" Type="int" Nullable="false" />
+          <Property Name="TeamsId" Type="text" Nullable="false" />
+          <Property Name="Date" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="type" Type="int" Nullable="false" />
+          <Property Name="Title" Type="text" Nullable="false" />
+          <Property Name="Content" Type="text" Nullable="false" />
+          <Property Name="Enabled" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="notificationtype">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="text" Nullable="false" />
+          <Property Name="description" Type="text" Nullable="false" />
+          <Property Name="enabled" Type="bool" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6005: The data type 'polygon' is currently not supported for the target Entity Framework version; the column 'AreaLimits' in the table 'def.escorcenterdb.region' was excluded.-->
+        <EntityType Name="region">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="text" Nullable="false" />
+          <Property Name="Description" Type="text" />
+          <Property Name="AreaLimitsText" Type="text" Nullable="false" />
+          <Property Name="Enabled" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="season">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="league" Type="int" Nullable="false" />
+          <Property Name="title" Type="text" Nullable="false" />
+          <Property Name="description" Type="text" Nullable="false" />
+          <Property Name="dateFrom" Type="date" Nullable="false" />
+          <Property Name="dateTo" Type="date" Nullable="false" />
+          <Property Name="enabled" Type="bool" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'def.escorcenterdb.subscribedteams' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="subscribedteams">
+          <Key>
+            <PropertyRef Name="season" />
+            <PropertyRef Name="team" />
+          </Key>
+          <Property Name="season" Type="int" Nullable="false" />
+          <Property Name="team" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="team">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="text" Nullable="false" />
+          <Property Name="Description" Type="text" />
+          <Property Name="Logo" Type="text" Nullable="false" />
+          <Property Name="League" Type="int" Nullable="false" />
+          <Property Name="Enabled" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="week">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="season" Type="int" Nullable="false" />
+          <Property Name="title" Type="text" Nullable="false" />
+          <Property Name="description" Type="text" Nullable="false" />
+          <Property Name="dateFrom" Type="date" Nullable="false" />
+          <Property Name="dateTo" Type="date" Nullable="false" />
+          <Property Name="enabled" Type="bool" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'def.escorcenterdb.gamesdrawnview' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="gamesdrawnview">
+          <Key>
+            <PropertyRef Name="League" />
+            <PropertyRef Name="season" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="GamesDrawn" />
+          </Key>
+          <Property Name="League" Type="int" Nullable="false" />
+          <Property Name="season" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="text" Nullable="false" />
+          <Property Name="GamesDrawn" Type="bigint" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'def.escorcenterdb.gamesplayedview' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="gamesplayedview">
+          <Key>
+            <PropertyRef Name="League" />
+            <PropertyRef Name="season" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="GamesPlayed" />
+          </Key>
+          <Property Name="League" Type="int" Nullable="false" />
+          <Property Name="season" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="text" Nullable="false" />
+          <Property Name="GamesPlayed" Type="bigint" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'def.escorcenterdb.gameswonview' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="gameswonview">
+          <Key>
+            <PropertyRef Name="League" />
+            <PropertyRef Name="season" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="GamesWon" />
+          </Key>
+          <Property Name="League" Type="int" Nullable="false" />
+          <Property Name="season" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="text" Nullable="false" />
+          <Property Name="GamesWon" Type="bigint" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'def.escorcenterdb.league_season_weekview' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="league_season_weekview">
+          <Key>
+            <PropertyRef Name="league" />
+            <PropertyRef Name="season" />
+            <PropertyRef Name="week" />
+          </Key>
+          <Property Name="league" Type="int" Nullable="false" />
+          <Property Name="season" Type="int" Nullable="false" />
+          <Property Name="week" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'def.escorcenterdb.scoreagainstview' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="scoreagainstview">
+          <Key>
+            <PropertyRef Name="League" />
+            <PropertyRef Name="season" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="League" Type="int" Nullable="false" />
+          <Property Name="season" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="text" Nullable="false" />
+          <Property Name="ScoreAgainst" Type="decimal" Precision="25" Scale="0" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'def.escorcenterdb.scorefavorview' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="scorefavorview">
+          <Key>
+            <PropertyRef Name="League" />
+            <PropertyRef Name="season" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="League" Type="int" Nullable="false" />
+          <Property Name="season" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="text" Nullable="false" />
+          <Property Name="ScoreFavor" Type="decimal" Precision="25" Scale="0" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'def.escorcenterdb.scoretableview' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="scoretableview">
+          <Key>
+            <PropertyRef Name="season" />
+            <PropertyRef Name="team" />
+          </Key>
+          <Property Name="season" Type="int" Nullable="false" />
+          <Property Name="team" Type="int" Nullable="false" />
+          <Property Name="GamesPlayed" Type="bigint" />
+          <Property Name="GamesWon" Type="bigint" />
+          <Property Name="GamesDrawn" Type="bigint" />
+          <Property Name="GamesLost" Type="bigint" />
+          <Property Name="ScoreFavor" Type="decimal" Precision="25" Scale="0" />
+          <Property Name="ScoreAgainst" Type="decimal" Precision="25" Scale="0" />
+          <Property Name="ScoreDifference" Type="decimal" Precision="26" Scale="0" />
+        </EntityType>
+        <EntityContainer Name="escorcenterdbModelStoreContainer">
+          <EntitySet Name="field" EntityType="Self.field" Schema="escorcenterdb" store:Type="Tables" />
+          <EntitySet Name="league" EntityType="Self.league" Schema="escorcenterdb" store:Type="Tables" />
+          <EntitySet Name="match" EntityType="Self.match" Schema="escorcenterdb" store:Type="Tables" />
+          <EntitySet Name="notification" EntityType="Self.notification" Schema="escorcenterdb" store:Type="Tables" />
+          <EntitySet Name="notificationtype" EntityType="Self.notificationtype" Schema="escorcenterdb" store:Type="Tables" />
+          <EntitySet Name="region" EntityType="Self.region" Schema="escorcenterdb" store:Type="Tables" />
+          <EntitySet Name="season" EntityType="Self.season" Schema="escorcenterdb" store:Type="Tables" />
+          <EntitySet Name="team" EntityType="Self.team" Schema="escorcenterdb" store:Type="Tables" />
+          <EntitySet Name="week" EntityType="Self.week" Schema="escorcenterdb" store:Type="Tables" />
+          <EntitySet Name="subscribedteams" EntityType="Self.subscribedteams" store:Type="Tables" store:Schema="escorcenterdb">
+            <DefiningQuery>SELECT
+`subscribedteams`.`season`, 
+`subscribedteams`.`team`
+FROM `subscribedteams` AS `subscribedteams`</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="gamesdrawnview" EntityType="Self.gamesdrawnview" store:Type="Views" store:Schema="escorcenterdb">
+            <DefiningQuery>SELECT
+`gamesdrawnview`.`League`, 
+`gamesdrawnview`.`season`, 
+`gamesdrawnview`.`Id`, 
+`gamesdrawnview`.`Name`, 
+`gamesdrawnview`.`GamesDrawn`
+FROM `gamesdrawnview` AS `gamesdrawnview`</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="gamesplayedview" EntityType="Self.gamesplayedview" store:Type="Views" store:Schema="escorcenterdb">
+            <DefiningQuery>SELECT
+`gamesplayedview`.`League`, 
+`gamesplayedview`.`season`, 
+`gamesplayedview`.`Id`, 
+`gamesplayedview`.`Name`, 
+`gamesplayedview`.`GamesPlayed`
+FROM `gamesplayedview` AS `gamesplayedview`</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="gameswonview" EntityType="Self.gameswonview" store:Type="Views" store:Schema="escorcenterdb">
+            <DefiningQuery>SELECT
+`gameswonview`.`League`, 
+`gameswonview`.`season`, 
+`gameswonview`.`Id`, 
+`gameswonview`.`Name`, 
+`gameswonview`.`GamesWon`
+FROM `gameswonview` AS `gameswonview`</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="league_season_weekview" EntityType="Self.league_season_weekview" store:Type="Views" store:Schema="escorcenterdb">
+            <DefiningQuery>SELECT
+`league_season_weekview`.`league`, 
+`league_season_weekview`.`season`, 
+`league_season_weekview`.`week`
+FROM `league_season_weekview` AS `league_season_weekview`</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="scoreagainstview" EntityType="Self.scoreagainstview" store:Type="Views" store:Schema="escorcenterdb">
+            <DefiningQuery>SELECT
+`scoreagainstview`.`League`, 
+`scoreagainstview`.`season`, 
+`scoreagainstview`.`Id`, 
+`scoreagainstview`.`Name`, 
+`scoreagainstview`.`ScoreAgainst`
+FROM `scoreagainstview` AS `scoreagainstview`</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="scorefavorview" EntityType="Self.scorefavorview" store:Type="Views" store:Schema="escorcenterdb">
+            <DefiningQuery>SELECT
+`scorefavorview`.`League`, 
+`scorefavorview`.`season`, 
+`scorefavorview`.`Id`, 
+`scorefavorview`.`Name`, 
+`scorefavorview`.`ScoreFavor`
+FROM `scorefavorview` AS `scorefavorview`</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="scoretableview" EntityType="Self.scoretableview" store:Type="Views" store:Schema="escorcenterdb">
+            <DefiningQuery>SELECT
+`scoretableview`.`season`, 
+`scoretableview`.`team`, 
+`scoretableview`.`GamesPlayed`, 
+`scoretableview`.`GamesWon`, 
+`scoretableview`.`GamesDrawn`, 
+`scoretableview`.`GamesLost`, 
+`scoretableview`.`ScoreFavor`, 
+`scoretableview`.`ScoreAgainst`, 
+`scoretableview`.`ScoreDifference`
+FROM `scoretableview` AS `scoretableview`</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="escorcenterdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="field">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="longitude" Type="Single" Nullable="false" />
+          <Property Name="latitude" Type="Single" Nullable="false" />
+          <Property Name="sport" Type="Int32" Nullable="false" />
+          <Property Name="enabled" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="league">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Region" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Logo" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="match">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="week" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" />
+          <Property Name="team1" Type="Int32" Nullable="false" />
+          <Property Name="scoreTeam1" Type="SByte" Nullable="false" />
+          <Property Name="team2" Type="Int32" Nullable="false" />
+          <Property Name="scoreTeam2" Type="SByte" Nullable="false" />
+          <Property Name="field" Type="Int32" Nullable="false" />
+          <Property Name="details" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="finished" Type="Boolean" Nullable="false" />
+          <Property Name="winner" Type="Int32" Nullable="false" />
+          <Property Name="draw" Type="Boolean" Nullable="false" />
+          <Property Name="forfeit" Type="Boolean" Nullable="false" />
+          <Property Name="enabled" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="notification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LeagueId" Type="Int32" Nullable="false" />
+          <Property Name="TeamsId" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="type" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="notificationtype">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="enabled" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="region">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="AreaLimitsText" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="season">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="league" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dateFrom" Type="DateTime" Nullable="false" />
+          <Property Name="dateTo" Type="DateTime" Nullable="false" />
+          <Property Name="enabled" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="team">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Logo" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="League" Type="Int32" Nullable="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="week">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="season" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dateFrom" Type="DateTime" Nullable="false" />
+          <Property Name="dateTo" Type="DateTime" Nullable="false" />
+          <Property Name="enabled" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="subscribedteam">
+          <Key>
+            <PropertyRef Name="season" />
+            <PropertyRef Name="team" />
+          </Key>
+          <Property Name="season" Type="Int32" Nullable="false" />
+          <Property Name="team" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="gamesdrawnview">
+          <Key>
+            <PropertyRef Name="League" />
+            <PropertyRef Name="season" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="GamesDrawn" />
+          </Key>
+          <Property Name="League" Type="Int32" Nullable="false" />
+          <Property Name="season" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GamesDrawn" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="gamesplayedview">
+          <Key>
+            <PropertyRef Name="League" />
+            <PropertyRef Name="season" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="GamesPlayed" />
+          </Key>
+          <Property Name="League" Type="Int32" Nullable="false" />
+          <Property Name="season" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GamesPlayed" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="gameswonview">
+          <Key>
+            <PropertyRef Name="League" />
+            <PropertyRef Name="season" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="GamesWon" />
+          </Key>
+          <Property Name="League" Type="Int32" Nullable="false" />
+          <Property Name="season" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GamesWon" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="league_season_weekview">
+          <Key>
+            <PropertyRef Name="league" />
+            <PropertyRef Name="season" />
+            <PropertyRef Name="week" />
+          </Key>
+          <Property Name="league" Type="Int32" Nullable="false" />
+          <Property Name="season" Type="Int32" Nullable="false" />
+          <Property Name="week" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="scoreagainstview">
+          <Key>
+            <PropertyRef Name="League" />
+            <PropertyRef Name="season" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="League" Type="Int32" Nullable="false" />
+          <Property Name="season" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ScoreAgainst" Type="Decimal" />
+        </EntityType>
+        <EntityType Name="scorefavorview">
+          <Key>
+            <PropertyRef Name="League" />
+            <PropertyRef Name="season" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="League" Type="Int32" Nullable="false" />
+          <Property Name="season" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ScoreFavor" Type="Decimal" />
+        </EntityType>
+        <EntityType Name="scoretableview">
+          <Key>
+            <PropertyRef Name="season" />
+            <PropertyRef Name="team" />
+          </Key>
+          <Property Name="season" Type="Int32" Nullable="false" />
+          <Property Name="team" Type="Int32" Nullable="false" />
+          <Property Name="GamesPlayed" Type="Int64" />
+          <Property Name="GamesWon" Type="Int64" />
+          <Property Name="GamesDrawn" Type="Int64" />
+          <Property Name="GamesLost" Type="Int64" />
+          <Property Name="ScoreFavor" Type="Decimal" />
+          <Property Name="ScoreAgainst" Type="Decimal" />
+          <Property Name="ScoreDifference" Type="Decimal" />
+        </EntityType>
+        <EntityContainer Name="escorcenterdbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="fields" EntityType="Self.field" />
+          <EntitySet Name="leagues" EntityType="Self.league" />
+          <EntitySet Name="matches" EntityType="Self.match" />
+          <EntitySet Name="notifications" EntityType="Self.notification" />
+          <EntitySet Name="notificationtypes" EntityType="Self.notificationtype" />
+          <EntitySet Name="regions" EntityType="Self.region" />
+          <EntitySet Name="seasons" EntityType="Self.season" />
+          <EntitySet Name="teams" EntityType="Self.team" />
+          <EntitySet Name="weeks" EntityType="Self.week" />
+          <EntitySet Name="subscribedteams" EntityType="Self.subscribedteam" />
+          <EntitySet Name="gamesdrawnviews" EntityType="Self.gamesdrawnview" />
+          <EntitySet Name="gamesplayedviews" EntityType="Self.gamesplayedview" />
+          <EntitySet Name="gameswonviews" EntityType="Self.gameswonview" />
+          <EntitySet Name="league_season_weekview" EntityType="Self.league_season_weekview" />
+          <EntitySet Name="scoreagainstviews" EntityType="Self.scoreagainstview" />
+          <EntitySet Name="scorefavorviews" EntityType="Self.scorefavorview" />
+          <EntitySet Name="scoretableviews" EntityType="Self.scoretableview" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="escorcenterdbModelStoreContainer" CdmEntityContainer="escorcenterdbEntities">
+          <EntitySetMapping Name="fields">
+            <EntityTypeMapping TypeName="escorcenterdbModel.field">
+              <MappingFragment StoreEntitySet="field">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="sport" ColumnName="sport" />
+                <ScalarProperty Name="enabled" ColumnName="enabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="leagues">
+            <EntityTypeMapping TypeName="escorcenterdbModel.league">
+              <MappingFragment StoreEntitySet="league">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="matches">
+            <EntityTypeMapping TypeName="escorcenterdbModel.match">
+              <MappingFragment StoreEntitySet="match">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="week" ColumnName="week" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="team1" ColumnName="team1" />
+                <ScalarProperty Name="scoreTeam1" ColumnName="scoreTeam1" />
+                <ScalarProperty Name="team2" ColumnName="team2" />
+                <ScalarProperty Name="scoreTeam2" ColumnName="scoreTeam2" />
+                <ScalarProperty Name="field" ColumnName="field" />
+                <ScalarProperty Name="details" ColumnName="details" />
+                <ScalarProperty Name="finished" ColumnName="finished" />
+                <ScalarProperty Name="winner" ColumnName="winner" />
+                <ScalarProperty Name="draw" ColumnName="draw" />
+                <ScalarProperty Name="forfeit" ColumnName="forfeit" />
+                <ScalarProperty Name="enabled" ColumnName="enabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="notifications">
+            <EntityTypeMapping TypeName="escorcenterdbModel.notification">
+              <MappingFragment StoreEntitySet="notification">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LeagueId" ColumnName="LeagueId" />
+                <ScalarProperty Name="TeamsId" ColumnName="TeamsId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="notificationtypes">
+            <EntityTypeMapping TypeName="escorcenterdbModel.notificationtype">
+              <MappingFragment StoreEntitySet="notificationtype">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="enabled" ColumnName="enabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="regions">
+            <EntityTypeMapping TypeName="escorcenterdbModel.region">
+              <MappingFragment StoreEntitySet="region">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="AreaLimitsText" ColumnName="AreaLimitsText" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="seasons">
+            <EntityTypeMapping TypeName="escorcenterdbModel.season">
+              <MappingFragment StoreEntitySet="season">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="league" ColumnName="league" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="dateFrom" ColumnName="dateFrom" />
+                <ScalarProperty Name="dateTo" ColumnName="dateTo" />
+                <ScalarProperty Name="enabled" ColumnName="enabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="teams">
+            <EntityTypeMapping TypeName="escorcenterdbModel.team">
+              <MappingFragment StoreEntitySet="team">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="League" ColumnName="League" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="weeks">
+            <EntityTypeMapping TypeName="escorcenterdbModel.week">
+              <MappingFragment StoreEntitySet="week">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="season" ColumnName="season" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="dateFrom" ColumnName="dateFrom" />
+                <ScalarProperty Name="dateTo" ColumnName="dateTo" />
+                <ScalarProperty Name="enabled" ColumnName="enabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="subscribedteams">
+            <EntityTypeMapping TypeName="escorcenterdbModel.subscribedteam">
+              <MappingFragment StoreEntitySet="subscribedteams">
+                <ScalarProperty Name="season" ColumnName="season" />
+                <ScalarProperty Name="team" ColumnName="team" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gamesdrawnviews">
+            <EntityTypeMapping TypeName="escorcenterdbModel.gamesdrawnview">
+              <MappingFragment StoreEntitySet="gamesdrawnview">
+                <ScalarProperty Name="League" ColumnName="League" />
+                <ScalarProperty Name="season" ColumnName="season" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="GamesDrawn" ColumnName="GamesDrawn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gamesplayedviews">
+            <EntityTypeMapping TypeName="escorcenterdbModel.gamesplayedview">
+              <MappingFragment StoreEntitySet="gamesplayedview">
+                <ScalarProperty Name="League" ColumnName="League" />
+                <ScalarProperty Name="season" ColumnName="season" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="GamesPlayed" ColumnName="GamesPlayed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gameswonviews">
+            <EntityTypeMapping TypeName="escorcenterdbModel.gameswonview">
+              <MappingFragment StoreEntitySet="gameswonview">
+                <ScalarProperty Name="League" ColumnName="League" />
+                <ScalarProperty Name="season" ColumnName="season" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="GamesWon" ColumnName="GamesWon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="league_season_weekview">
+            <EntityTypeMapping TypeName="escorcenterdbModel.league_season_weekview">
+              <MappingFragment StoreEntitySet="league_season_weekview">
+                <ScalarProperty Name="league" ColumnName="league" />
+                <ScalarProperty Name="season" ColumnName="season" />
+                <ScalarProperty Name="week" ColumnName="week" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="scoreagainstviews">
+            <EntityTypeMapping TypeName="escorcenterdbModel.scoreagainstview">
+              <MappingFragment StoreEntitySet="scoreagainstview">
+                <ScalarProperty Name="League" ColumnName="League" />
+                <ScalarProperty Name="season" ColumnName="season" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ScoreAgainst" ColumnName="ScoreAgainst" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="scorefavorviews">
+            <EntityTypeMapping TypeName="escorcenterdbModel.scorefavorview">
+              <MappingFragment StoreEntitySet="scorefavorview">
+                <ScalarProperty Name="League" ColumnName="League" />
+                <ScalarProperty Name="season" ColumnName="season" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ScoreFavor" ColumnName="ScoreFavor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="scoretableviews">
+            <EntityTypeMapping TypeName="escorcenterdbModel.scoretableview">
+              <MappingFragment StoreEntitySet="scoretableview">
+                <ScalarProperty Name="season" ColumnName="season" />
+                <ScalarProperty Name="team" ColumnName="team" />
+                <ScalarProperty Name="GamesPlayed" ColumnName="GamesPlayed" />
+                <ScalarProperty Name="GamesWon" ColumnName="GamesWon" />
+                <ScalarProperty Name="GamesDrawn" ColumnName="GamesDrawn" />
+                <ScalarProperty Name="GamesLost" ColumnName="GamesLost" />
+                <ScalarProperty Name="ScoreFavor" ColumnName="ScoreFavor" />
+                <ScalarProperty Name="ScoreAgainst" ColumnName="ScoreAgainst" />
+                <ScalarProperty Name="ScoreDifference" ColumnName="ScoreDifference" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

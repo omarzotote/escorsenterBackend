@@ -1,0 +1,55 @@
+﻿<link rel="import" href="/bower_components/polymer/polymer.html" />
+<link rel="import" href="/bower_components/font-roboto/roboto.html" />
+<link rel="import" href="/bower_components/iron-media-query/iron-media-query.html" />
+<link rel="import" href="/bower_components/iron-flex-layout/classes/iron-flex-layout.html" />
+<link rel="import" href="../rounded-button.html" />
+<link rel="stylesheet" href="/Resources/styles.css" />
+<link rel="import" href="/bower_components/paper-ripple/paper-ripple.html" />
+
+
+<dom-module id="green-cell">
+    <template>
+        <style>
+            :host {
+                width: 100%;
+                height: 130px;
+
+            }
+
+            .elementDiv {
+                width: 80%;
+                height: 100px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 30px;
+                background: #E4F2E6;
+                padding-right: 16px;
+                border-radius: 0px;
+            }
+
+
+            .elementText{
+                padding-top: 13px;
+                margin-left: 3%;
+                color: #34753A;
+            }
+            
+        </style>
+        <div class="elementDiv horizontal layout justified">
+            <h1 class="elementText">{{text}}</h1>
+            <rounded-button class="self-center" on-click="clicked">></rounded-button>
+        </div>
+    </template>
+    <script>
+        Polymer({
+            is: "green-cell",
+            properties: {
+                url: String,
+                text: String,
+            },
+            clicked: function () {
+                window.location.assign(this.url);
+            }
+        });
+    </script>
+</dom-module>

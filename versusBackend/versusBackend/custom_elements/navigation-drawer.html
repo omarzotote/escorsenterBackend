@@ -1,0 +1,56 @@
+﻿<link rel="import" href="../bower_components/polymer/polymer.html" />
+<link rel="import" href="../bower_components/iron-media-query/iron-media-query.html" />
+<link rel="import" href="../bower_components/iron-flex-layout/classes/iron-flex-layout.html" />
+<link rel="import" href="../bower_components/iron-image/iron-image.html" />
+<link rel="import" href="login-button.html" />
+<link rel="import" href="../bower_components/font-roboto/roboto.html" />
+<link rel="stylesheet" href="../Resources/styles.css" />
+<link rel="import" href="../bower_components/paper-ripple/paper-ripple.html"/>
+<script src="../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+
+<dom-module id="navigation-drawer">
+    <template>
+        <style>
+            :host {
+                width: var(--width, 300px);
+                height: inherit;
+            }
+
+            #logo {
+                width: 80%;
+                height: 240px;
+            }
+
+            .container {
+                background-color: #76bc80;
+                color: #34753A;
+                font-family: roboto;
+                font-size: 20px;
+                font-weight: normal;
+            }
+
+            .container > div {
+                margin-top: 40px;
+                width: 90%;
+            }
+        </style>
+        <iron-media-query query="(max-device-width: 10cm)" query-matches="{{ smallScreen }}"></iron-media-query>
+        <div class="vertical layout center container">
+            <iron-image id="logo" src="../Resources/logo.png" sizing="contain"></iron-image>
+            USUARIO
+            <login-button text="CERRAR SESIÓN" style="position:relative"><paper-ripple></paper-ripple></login-button>
+            <div>Regiones</div>
+        </div>
+    </template>
+    <script>
+        Polymer({
+            is: "navigation-drawer",
+            ready: function () {
+                if (this.smallScreen) {
+                    this.customStyle['--width'] = '100%';
+                    this.updateStyles();
+                }
+            }
+        });
+    </script>
+</dom-module>

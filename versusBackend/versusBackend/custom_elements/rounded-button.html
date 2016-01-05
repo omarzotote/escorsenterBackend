@@ -1,0 +1,56 @@
+﻿<link rel="import" href="../bower_components/polymer/polymer.html" />
+<link rel="import" href="../bower_components/font-roboto/roboto.html" />
+<link rel="import" href="../bower_components/iron-media-query/iron-media-query.html" />
+<link rel="import" href="../bower_components/paper-ripple/paper-ripple.html"/>
+<script src="../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+
+
+<dom-module id="rounded-button">
+    <template>
+        <style>
+            :host{
+                cursor: pointer;
+            }
+            .btn{
+                border-radius: 50%;
+                background-color: green;
+                border: none;
+                outline: none;
+                color: white;
+                font-size: var(--fontsize);
+                width: 50px;
+                height: var(--height);
+                width: var(--width);
+            }
+            .btn:hover {
+                cursor: pointer;
+            }
+        </style>
+        <button class="btn"><content></content><paper-ripple></paper-ripple></button>
+    </template>
+    <script>
+        Polymer({
+            is: "rounded-button",
+            properties: {
+                width: {
+                    type: String,
+                    value: "50px"
+                },
+                height: {
+                    type: String,
+                    value: "50px"
+                },
+                fontsize: {
+                    type: String,
+                    value: "40px"
+                }
+            },
+            ready: function() {
+                this.customStyle["--height"] = this.height;
+                this.customStyle["--width"] = this.width;
+                this.customStyle["--fontsize"] = this.fontsize;
+                this.updateStyles();
+            }
+        });
+    </script>
+</dom-module>

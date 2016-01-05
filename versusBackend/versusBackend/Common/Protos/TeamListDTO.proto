@@ -1,0 +1,9 @@
+package Common.DTO;
+
+import "TeamDTO.proto";
+
+message TeamListDTO{
+	repeated TeamDTO items = 1;
+	required int32 PageNumber = 2;
+	required int32 PageTotal = 3;
+}

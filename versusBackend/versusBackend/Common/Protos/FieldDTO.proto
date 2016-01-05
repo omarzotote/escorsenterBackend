@@ -1,0 +1,11 @@
+package Common.DTO;
+
+message FieldDTO{
+	optional int64 Id = 1;
+	optional string Name = 2;
+	optional string Description = 19;
+	optional double longitude = 3;
+	optional double latitude = 4;
+	optional int64 sport = 5;
+	optional string Address = 6;
+}

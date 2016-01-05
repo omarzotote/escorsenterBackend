@@ -1,0 +1,6 @@
+package Common.DTO;
+
+message UserDTO {
+	optional string UserName = 1;
+	optional string Password = 2;
+}

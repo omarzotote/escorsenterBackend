@@ -1,0 +1,9 @@
+package Common.DTO;
+
+import "LeagueDTO.proto";
+
+message LeagueListDTO{
+	repeated LeagueDTO items = 1;
+	optional int32 PageNumber = 2;
+	optional int32 PageTotal = 3;
+}

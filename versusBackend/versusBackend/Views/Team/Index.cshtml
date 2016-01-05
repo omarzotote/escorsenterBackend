@@ -1,0 +1,255 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+<link rel="import" href="../bower_components/iron-flex-layout/classes/iron-flex-layout.html" />
+<link rel="import" href="~/custom_elements/element-div.html" />
+<link rel="import" href="~/custom_elements/tab.html" />
+<link rel="import" href="~/custom_elements/tab-coordinator.html" />
+<link rel="import" href="~/custom_elements/rounded-button.html">
+<link rel="import" href="~/custom_elements/custom-input.html">
+<link rel="import" href="~/bower_components/paper-menu-button/paper-menu-button.html">
+<link rel="stylesheet" href="~/Resources/styles.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<style>
+    /*All*/
+    body {
+        font-family: roboto;
+    }
+
+    .header {
+        margin-left: 3%;
+        margin-top: 5px;
+        color: #34753A;
+        margin-bottom: 3px;
+    }
+
+    .addSeason {
+        width: 100%;
+        height: 50px;
+        background: #C8E4CC;
+    }
+
+    .addBtn {
+        margin-left: 10px;
+    }
+
+    .newSeasonText {
+        font-weight: 400;
+        font-size: 20px;
+        margin-left: 10px;
+        color: #34753A;
+    }
+    .back{
+        height: 80px;
+        color: #34753A;
+        display: block;
+    }
+    .todo {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    .col1 {
+        width: 80%;
+        height: 648px;
+    }
+
+    .col2 {
+        width: 80%;
+        height: 648px;
+    }
+    .leagues{
+        border-radius: 16px;
+        background:#C8E4CC;
+    }
+    .footer1{
+        width: 50%;
+        height: 100px;
+    }
+    .footer2{
+        width:50%;
+        height: 100px;   
+    }
+    .footerbtn{
+        background: #BADDBF;
+        width: 74%;
+        height: 80px;
+        border: none;
+        outline: 0px;
+        font-size: 26px;
+        font-weight: 600;
+        color: #34753A;
+    }
+    .updatebtn{
+        float: right;
+        margin-right:6%;
+    }
+    .deletebtn{
+        margin-left: 6%;
+    }
+    select {
+        border-radius: 16px; 
+        font-size: 40px; 
+        width: 93%; 
+        height: 88px; 
+        border: none; 
+        outline: 0;
+        -webkit-appearance: none;  
+        margin-top: 30px; 
+        font-family: roboto;
+        color: #34753A;
+        font-weight: 500;
+        padding-left: 20px;
+        background: url(https://scontent-dfw1-1.xx.fbcdn.net/hphotos-xap1/v/t1.0-9/12308655_1128857327132101_7982986051511963698_n.jpg?oh=7cc5d2a5fe25421427890fdad8d23a69&oe=56E25848) no-repeat right #E4F2E6;
+    }
+    /*All*/
+
+    /*Input file*/
+    .fileUpload {
+	    overflow: hidden;
+	    width: 100%;
+        height: 300px;
+        border-radius: 26px;
+        position:relative;
+        background: #E4F2E6;
+        color:#34753A;
+        text-align:center;
+        padding: 3px;
+        font-size: 30px;
+    }
+    .fileUpload input.upload {
+	    position: absolute;
+	    top: 0;
+	    right: 0;
+	    margin: 0;
+	    padding: 0;
+	    font-size: 100px;
+	    cursor: pointer;
+	    opacity: 0;
+	    filter: alpha(opacity=0);
+    }
+    /*Input file*/
+    .team-logo{
+        width: 100%;
+        height: 300px;
+        background: #E4F2E6;
+        border-radius: 26px;
+        margin-bottom: 10px;
+    }
+    .center{
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .logo-input{
+        cursor: pointer;
+    }
+    rounded-button {
+        cursor: pointer;
+    }
+    button {
+        cursor: pointer;
+    }
+    /*Input file*/
+
+    .upload-logo{
+        width: 100%;
+        height: 40px;
+        border:none;
+        outline: 0;
+        background: #BADDBF;
+        margin-top: 10px;
+        font-size: 32px;
+        font-weight: 600;
+         color: #34753A;
+    }
+
+   </style>
+
+
+    <script>
+        $(document).ready(function(){
+            $('.logo-input').click(function(e) {
+            $(this).find('input[type="file"]').click();
+        }),
+
+            $('.logo-input input').click(function(e) {
+                e.stopPropagation();
+            })
+        });
+    </script>
+
+
+
+    <!--Head-->
+    <h2 class="header" > AGUASCALIENTES</h2 >
+    <tab-coordinator > </tab-coordinator >
+    <div class="addSeason horizontal layout center" > 
+        <rounded-button class="addBtn" fontsize="30px" width="35px" height="35px" > + </rounded-button >
+        <h1 class="newSeasonText" > Añadir Nueva</h1 > 
+    </div >
+    <!--Head-->
+    <div class="vertical layout">
+        <div class="container horizontal layout back">
+            <rounded-button style="margin-left: 15px;" class="self-center"><</rounded-button>
+            <h1 class="logoText" style="margin-left: 15px">Torus F.C.</h1>
+        </div>
+
+        <div class="todo horizontal layout">
+            <!-- Column 1 Container Div -->
+            <div class="vertical layout col1">
+                <custom-input height="86px" width="90%" borderradius="16px" placeholder="Nombre" fontsize="40px"></custom-input>
+                <custom-input height="86px" width="90%" borderradius="16px" placeholder="Descripción" fontsize="40px"></custom-input>
+                <select>
+                    <option value="Liga">Liga</option>
+                    <option value="Liga">Omar es joto</option>
+                    <option value="Liga">Omar es joto</option>
+                    <option value="Liga">Omar es joto</option>
+                    <option value="Liga">Omar es joto</option>
+                    <option value="Liga">Omar es joto</option>
+                    <option value="Liga">Omar es joto</option>
+                    <option value="Liga">Omar es joto</option>
+                    <option value="Liga">Omar es joto</option>
+                    <option value="Liga">Omar es joto</option>
+                    <option value="Liga">Omar es joto</option>
+                    <option value="Liga">Omar es joto</option>
+                    <option value="Liga">Omar es joto</option>
+                    <option value="Liga">Omar es joto</option>
+                    <option value="Liga">Omar es joto</option>
+                    <option value="Liga">Omar es joto</option>
+                    <option value="Liga">Omar es joto</option>
+                    <option value="Liga">Omar es joto</option>
+                    <option value="Liga">Omar es joto</option>
+                    <option value="Liga">Omar es joto</option>
+                    <option value="Liga">Omar es joto</option>
+                </select>
+            </div>
+
+            <!-- Column 2 Container Div -->
+            <div class=" vertical layout col2">
+                <div class="logo-input">
+                    <div class="fileUpload container horizontal layout">
+                        <rounded-button class="center self-center">+</rounded-button>
+                        <input type="file" accept="image/jpeg, image/png" class="upload" />
+                    </div>
+                </div>
+                <button class="upload-logo">Subir Logo</button>
+            </div>
+        </div>
+        <div class="horizontal layout">
+            <!--Footer 1-->
+            <div class="footer1 horizontal layout end-justified">
+                <button class="footerbtn updatebtn">Actualizar Equipo</button>
+            </div>
+            <!--Footer 2-->
+            <div class="footer2 horizontal layout">
+                <button class="footerbtn deletebtn">Eliminar Equipo</button>
+            </div>
+         </div>
+
+    </div>
+    
+   

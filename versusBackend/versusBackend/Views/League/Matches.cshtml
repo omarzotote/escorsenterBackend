@@ -1,0 +1,228 @@
+﻿
+@{
+    ViewBag.Title = "Matches";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+<link rel="import" href="../bower_components/iron-flex-layout/classes/iron-flex-layout.html" />
+<link rel="import" href="~/custom_elements/element-div.html" />
+<link rel="import" href="~/custom_elements/tab.html" />
+<link rel="import" href="~/custom_elements/tab-coordinator.html" />
+<link rel="import" href="~/custom_elements/rounded-button.html">
+<link rel="import" href="~/custom_elements/custom-input.html">
+<link rel="stylesheet" href="~/Resources/styles.css" />
+<link rel="import" href="~/bower_components/paper-ripple/paper-ripple.html" />
+
+<style>
+    body {
+        font-family: roboto;
+    }
+
+    .header {
+        margin-left: 3%;
+        margin-top: 5px;
+        color: #34753A;
+        margin-bottom: 3px;
+    }
+
+    .addSeason {
+        width: 100%;
+        height: 50px;
+        background: #C8E4CC;
+    }
+
+    .addBtn {
+        margin-left: 10px;
+    }
+
+    .newSeasonText {
+        font-weight: 400;
+        font-size: 20px;
+        margin-left: 10px;
+        color: #34753A;
+    }
+
+    .col {
+        width: 20%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .col2 {
+        width: 5%;
+        margin-left: 5%;
+        margin-right: 3%;
+    }
+
+    .back {
+        height: 80px;
+        color: #34753A;
+        display: block;
+    }
+
+    select {
+        border-radius: 16px;
+        font-size: 40px;
+        width: 80%;
+        height: 88px;
+        border: none;
+        outline: 0;
+        -webkit-appearance: none;
+        font-family: roboto;
+        color: #34753A;
+        font-weight: 500;
+        padding-left: 20px;
+        background: url('../../Resources/Flechita chida 2.PNG') no-repeat right #E4F2E6;
+    }
+
+    .footer1 {
+        width: 50%;
+        height: 100px;
+    }
+
+    .footer2 {
+        width: 50%;
+        height: 100px;
+    }
+
+    .footerbtn {
+        background: #BADDBF;
+        width: 74%;
+        height: 80px;
+        border: none;
+        outline: 0px;
+        font-size: 26px;
+        font-weight: 600;
+        color: #34753A;
+        margin-top: 40px;
+        cursor: pointer;
+    }
+
+    .back {
+        height: 80px;
+        color: #34753A;
+        display: block;
+        cursor: pointer;
+    }
+
+    .juego {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    .marcador {
+        margin-left: 10%;
+        margin-right: 11%;
+        height: 88px;
+        margin-top: 20px;
+    }
+
+    .updatebtn {
+        float: right;
+        margin-right: 6%;
+    }
+
+    .deletebtn {
+        margin-left: 6%;
+    }
+
+    .savebtn {
+        background: #BADDBF;
+        width: 80%;
+        height: 80px;
+        border: none;
+        outline: 0px;
+        font-size: 26px;
+        font-weight: 600;
+        color: #34753A;
+        margin-bottom: 1%;
+        margin-top: 1%;
+        margin-left: auto;
+        margin-right: auto;
+        cursor: pointer;
+    }
+
+    .center {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .foot {
+        margin-top: 12.55%;
+    }
+
+    h2 {
+        font-family: roboto;
+        color: #34753A;
+    }
+    button {
+        cursor: pointer;
+        position: relative;
+    }
+</style>
+
+<div class="container vertical layout">
+
+    <h2 class="header">AGUASCALIENTES</h2>
+    <tab-coordinator></tab-coordinator>
+    <div class="addSeason horizontal layout center">
+        <rounded-button class="addBtn" fontsize="30px" width="35px" height="35px">+<paper-ripple></paper-ripple></rounded-button>
+        <h1 class="newSeasonText">Añadir Nueva</h1>
+    </div>
+
+    <div class="container horizontal layout back">
+        <rounded-button style="margin-left: 15px;" class="self-center"><<paper-ripple></paper-ripple></rounded-button>
+        <h1 class="self-center" style="margin-left: 15px">Jornada</h1>
+    </div>
+
+    <div class="juego horizontal layout">
+        <select>
+            <option value="Liga">Equipo 1</option>
+        </select>
+        <div class="col horizontal layout">
+            <h2 class="self-center center">VS</h2>
+        </div>
+        <select>
+            <option value="Liga">Equipo 2</option>
+        </select>
+    </div>
+
+    <div class="marcador horizontal layout">
+        <custom-input height="86px" width="60%" borderradius="16px" margintop="0px" placeholder="Marcador E1" type="number" fontsize="40px"></custom-input>
+        <div class="col2 horizontal layout">
+            <h2 class="self-center center">A</h2>
+        </div>
+        <custom-input height="86px" width="60%" borderradius="16px" margintop="0px" placeholder="Marcador E2" type="number" fontsize="40px"></custom-input>
+    </div>
+
+
+    <button class="savebtn" style="position:relative">Guardar marcador<paper-ripple></paper-ripple></button>
+
+   
+    <div class="juego horizontal layout">
+        <select>
+            <option value="Liga">Fecha</option>
+        </select>
+        <div class="col"></div>
+        <select>
+            <option value="Liga">Campo</option>
+        </select>
+    </div>
+
+    <div class="foot horizontal layout">
+        <!--Footer 1-->
+        <div class="footer1 horizontal layout end-justified">
+            <button class="footerbtn updatebtn">Actualizar Juego<paper-ripple></paper-ripple></button>
+        </div>
+        <!--Footer 2-->
+        <div class="footer2 horizontal layout">
+            <button class="footerbtn deletebtn">Eliminar Juego<paper-ripple></paper-ripple></button>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+

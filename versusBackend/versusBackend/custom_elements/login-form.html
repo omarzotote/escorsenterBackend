@@ -1,0 +1,71 @@
+﻿<link rel="import" href="../bower_components/polymer/polymer.html" />
+<link rel="import" href="../bower_components/iron-media-query/iron-media-query.html" />
+<link rel="import" href="../bower_components/iron-flex-layout/classes/iron-flex-layout.html" />
+<link rel="import" href="../bower_components/iron-image/iron-image.html" />
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html" />
+<link rel="import" href="login-input.html" />
+<link rel="import" href="login-button.html" />
+<link rel="stylesheet" href="../Resources/styles.css" />
+
+<dom-module id="login-form">
+    <template>
+        <style>
+            :host {
+                width: var(--width, 600px);
+                height: 100%;
+            }
+
+            #logo {
+                width: var(--width, 80%);
+                height: var(--height,400px);
+            }
+
+            .container {
+                background-color: var(--color);
+            }
+
+        </style>
+        <iron-media-query query="(max-device-width: 450px)" query-matches="{{ smallScreen }}"></iron-media-query>
+
+        <iron-ajax id="ajax"
+                   url="http://localhost/api/login"
+                   method="POST"
+                   content-type="application/json"
+                   body="{{ user }}"
+                   handle-as="json"
+                   on-response="handleResponse"></iron-ajax>
+        <div class="vertical layout center-justified center container">
+            <iron-image id="logo" src="../Resources/logo.png" sizing="contain"></iron-image>
+            <login-input type="text" placeholder="USUARIO" value="{{ userName }}"></login-input>
+            <login-input type="password" placeholder="CONTRASEÑA" value="{{ password }}"></login-input>
+            <login-button text="INICIAR SESIÓN" on-click="login"></login-button>
+        </div>
+    </template>
+    <script>
+        Polymer({
+            is: "login-form",
+            ready: function () {
+                if (this.smallScreen) {
+                    this.customStyle['--width'] = '100%';
+                    this.customStyle['--height'] = '70%';
+                    this.customStyle['--color'] = 'yellow';
+                    this.updateStyles();
+                }
+            },
+            login: function () {
+                this.user = new Object();
+                this.user._UserName = this.userName;
+                this.user._Password = this.password;
+                this.$.ajax.generateRequest();
+            },
+            handleResponse: function (e, r) {
+                if (r.response) {
+                    window.location.assign("http://localhost/region/index");
+                }
+                else {
+                    alert("El usuario o contraseña no son correctos");
+                }
+            }
+        });
+    </script>
+</dom-module>

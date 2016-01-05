@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="escorcenterdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="field">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="address" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="longitude" Type="Single" Nullable="false" />
+    <Property Name="latitude" Type="Single" Nullable="false" />
+    <Property Name="sport" Type="Int32" Nullable="false" />
+    <Property Name="enabled" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="league">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Region" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="Logo" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="Enabled" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="match">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="week" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" />
+    <Property Name="team1" Type="Int32" Nullable="false" />
+    <Property Name="scoreTeam1" Type="SByte" Nullable="false" />
+    <Property Name="team2" Type="Int32" Nullable="false" />
+    <Property Name="scoreTeam2" Type="SByte" Nullable="false" />
+    <Property Name="field" Type="Int32" Nullable="false" />
+    <Property Name="details" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="finished" Type="Boolean" Nullable="false" />
+    <Property Name="winner" Type="Int32" Nullable="false" />
+    <Property Name="draw" Type="Boolean" Nullable="false" />
+    <Property Name="forfeit" Type="Boolean" Nullable="false" />
+    <Property Name="enabled" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="notification">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LeagueId" Type="Int32" Nullable="false" />
+    <Property Name="TeamsId" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" />
+    <Property Name="type" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Content" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Enabled" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="notificationtype">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="enabled" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="region">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="AreaLimitsText" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Enabled" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="season">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="league" Type="Int32" Nullable="false" />
+    <Property Name="title" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dateFrom" Type="DateTime" Nullable="false" />
+    <Property Name="dateTo" Type="DateTime" Nullable="false" />
+    <Property Name="enabled" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="team">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="Logo" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="League" Type="Int32" Nullable="false" />
+    <Property Name="Enabled" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="week">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="season" Type="Int32" Nullable="false" />
+    <Property Name="title" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dateFrom" Type="DateTime" Nullable="false" />
+    <Property Name="dateTo" Type="DateTime" Nullable="false" />
+    <Property Name="enabled" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="subscribedteam">
+    <Key>
+      <PropertyRef Name="season" />
+      <PropertyRef Name="team" />
+    </Key>
+    <Property Name="season" Type="Int32" Nullable="false" />
+    <Property Name="team" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="gamesdrawnview">
+    <Key>
+      <PropertyRef Name="League" />
+      <PropertyRef Name="season" />
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="GamesDrawn" />
+    </Key>
+    <Property Name="League" Type="Int32" Nullable="false" />
+    <Property Name="season" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="GamesDrawn" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="gamesplayedview">
+    <Key>
+      <PropertyRef Name="League" />
+      <PropertyRef Name="season" />
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="GamesPlayed" />
+    </Key>
+    <Property Name="League" Type="Int32" Nullable="false" />
+    <Property Name="season" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="GamesPlayed" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="gameswonview">
+    <Key>
+      <PropertyRef Name="League" />
+      <PropertyRef Name="season" />
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="GamesWon" />
+    </Key>
+    <Property Name="League" Type="Int32" Nullable="false" />
+    <Property Name="season" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="GamesWon" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="league_season_weekview">
+    <Key>
+      <PropertyRef Name="league" />
+      <PropertyRef Name="season" />
+      <PropertyRef Name="week" />
+    </Key>
+    <Property Name="league" Type="Int32" Nullable="false" />
+    <Property Name="season" Type="Int32" Nullable="false" />
+    <Property Name="week" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="scoreagainstview">
+    <Key>
+      <PropertyRef Name="League" />
+      <PropertyRef Name="season" />
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="League" Type="Int32" Nullable="false" />
+    <Property Name="season" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ScoreAgainst" Type="Decimal" />
+  </EntityType>
+  <EntityType Name="scorefavorview">
+    <Key>
+      <PropertyRef Name="League" />
+      <PropertyRef Name="season" />
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="League" Type="Int32" Nullable="false" />
+    <Property Name="season" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ScoreFavor" Type="Decimal" />
+  </EntityType>
+  <EntityType Name="scoretableview">
+    <Key>
+      <PropertyRef Name="season" />
+      <PropertyRef Name="team" />
+    </Key>
+    <Property Name="season" Type="Int32" Nullable="false" />
+    <Property Name="team" Type="Int32" Nullable="false" />
+    <Property Name="GamesPlayed" Type="Int64" />
+    <Property Name="GamesWon" Type="Int64" />
+    <Property Name="GamesDrawn" Type="Int64" />
+    <Property Name="GamesLost" Type="Int64" />
+    <Property Name="ScoreFavor" Type="Decimal" />
+    <Property Name="ScoreAgainst" Type="Decimal" />
+    <Property Name="ScoreDifference" Type="Decimal" />
+  </EntityType>
+  <EntityContainer Name="escorcenterdbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="fields" EntityType="Self.field" />
+    <EntitySet Name="leagues" EntityType="Self.league" />
+    <EntitySet Name="matches" EntityType="Self.match" />
+    <EntitySet Name="notifications" EntityType="Self.notification" />
+    <EntitySet Name="notificationtypes" EntityType="Self.notificationtype" />
+    <EntitySet Name="regions" EntityType="Self.region" />
+    <EntitySet Name="seasons" EntityType="Self.season" />
+    <EntitySet Name="teams" EntityType="Self.team" />
+    <EntitySet Name="weeks" EntityType="Self.week" />
+    <EntitySet Name="subscribedteams" EntityType="Self.subscribedteam" />
+    <EntitySet Name="gamesdrawnviews" EntityType="Self.gamesdrawnview" />
+    <EntitySet Name="gamesplayedviews" EntityType="Self.gamesplayedview" />
+    <EntitySet Name="gameswonviews" EntityType="Self.gameswonview" />
+    <EntitySet Name="league_season_weekview" EntityType="Self.league_season_weekview" />
+    <EntitySet Name="scoreagainstviews" EntityType="Self.scoreagainstview" />
+    <EntitySet Name="scorefavorviews" EntityType="Self.scorefavorview" />
+    <EntitySet Name="scoretableviews" EntityType="Self.scoretableview" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+<link rel="import" href="../bower_components/iron-flex-layout/classes/iron-flex-layout.html" />
+<link rel="import" href="~/custom_elements/region/region-container.html"/>
+<link rel="import" href="~/custom_elements/rounded-button.html" />
+
+<style>
+    body {
+        font-family: roboto;
+        color: #34753A;
+    }
+
+
+    /*Style for the text "Regiones"*/
+    .header {
+        margin-left: 3%;
+        margin-top: 40px;
+    }
+
+
+    /*Style of all buttons*/
+    
+    .add{
+        margin-left: 2%;
+        margin-top: 23px;
+    }
+    .next{
+        display: inline;
+        margin-top: 23px;
+        float:right;
+    }
+
+    /*Style for the text "Regiones"*/
+
+    
+    button {
+        position: relative;
+    }
+</style>
+         <div class="flex vertical layout all">
+            <div class="horizontal layout">
+                <h1 class="header">REGIONES</h1>
+                <rounded-button class="add">+</rounded-button>
+            </div>
+             <region-container></region-container>
+        </div>
+
+    
+
+

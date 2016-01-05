@@ -1,0 +1,108 @@
+﻿<link rel="import" href="../bower_components/polymer/polymer.html" />
+<link rel="import" href="../bower_components/iron-media-query/iron-media-query.html" />
+<link rel="import" href="../bower_components/font-roboto/roboto.html" />
+
+<dom-module id="custom-input">
+    <template>
+        <style>
+            :host {
+                width: var(--width);
+                margin-top: var(--margintop);
+                --text-color: #34753A;
+                --border-color: #34753A;
+                --background-color: #6AA973;
+            }
+
+            input {
+                width: 100%;
+                height: var(--height);
+                border: none;
+                border-radius: var(--borderradius);
+                border-width: 1.5px;
+                outline: 0px;
+                background: var(--color);
+                color: var(--textcolor);
+                font-size: var(--fontsize);
+                font-family: roboto;
+                font-weight: 500;
+                padding-left: 20px;
+            }
+            input[type=number]::-webkit-inner-spin-button, 
+            input[type=number]::-webkit-outer-spin-button { 
+              -webkit-appearance: none; 
+              margin: 0; 
+            }
+
+            /* Placeholder style */
+
+            ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+                color: var(--textcolor);
+            }
+s
+            :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+                color: var(--textcolor);
+            }
+
+            ::-moz-placeholder { /* Mozilla Firefox 19+ */
+                color: var(--textcolor);
+            }
+
+            :-ms-input-placeholder { /* Internet Explorer 10-11 */
+                color: var(--textcolor);
+            }
+        </style>
+        <iron-media-query query="(max-device-width: 450px)" query-matches="{{ smallScreen }}"></iron-media-query>
+        <input type="{{ type }}" placeholder="{{ placeholder }}" />
+    </template>
+    <script>
+        Polymer({
+            is: "custom-input",
+            properties: {
+                type:{
+                    type: String,
+                    value: "text"
+                },
+                placeholder: String,
+                color: {
+                    type: String,
+                    value: "#E4F2E6"
+                },
+                borderradius: {
+                    type: String,
+                    value: "0px"
+                },
+                textcolor: {
+                    type: String,
+                    value: "#34753A"
+                },
+                fontsize: {
+                    type: String,
+                    value: "20px"
+                },
+                height: {
+                    type: String,
+                    value: "50px"
+                },
+                width: {
+                    type: String,
+                    value: "100%"
+                },
+                margintop: {
+                    type: String, 
+                    value: "30px"
+                }
+
+            },
+            ready: function () {
+                    this.customStyle['--height'] = this.height;
+                    this.customStyle['--fontsize'] = this.fontsize;
+                    this.customStyle['--borderradius'] = this.borderradius;
+                    this.customStyle['--color'] = this.color;
+                    this.customStyle['--textcolor'] = this.textcolor;
+                    this.customStyle['--width'] = this.width;
+                    this.customStyle['--margintop'] = this.margintop;
+                    this.updateStyles();
+            }
+        });
+    </script>
+</dom-module>

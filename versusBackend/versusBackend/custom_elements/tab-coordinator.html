@@ -1,0 +1,36 @@
+﻿<link rel="import" href="../bower_components/polymer/polymer.html" />
+
+<dom-module id="tab-coordinator">
+    <template>
+        <style>
+            :host {
+                width: 100%;
+            }
+
+            .tab-container {
+                width: 60%;
+            }
+        </style>
+        <div class="container horizontal layout center-justified">
+            <div class="tab-container horizontal layout">
+                <custom-tab id="defaultTab" class="flex" on-click="tabClicked">Temporadas</custom-tab>
+                <custom-tab class="flex" on-click="tabClicked">Campos</custom-tab>
+                <custom-tab class="flex" on-click="tabClicked">Notificaciones</custom-tab>
+            </div>
+        </div>
+    </template>
+    <script>
+        Polymer({
+            is: "tab-coordinator",
+            attached: function () {
+                this.selectedTab = this.$.defaultTab;
+                this.selectedTab.select();
+            },
+            tabClicked: function (e) {
+                this.selectedTab.unselect();
+                this.selectedTab = e.currentTarget;
+                this.selectedTab.select();
+            }
+        });
+    </script>
+</dom-module>

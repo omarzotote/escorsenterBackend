@@ -1,0 +1,101 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+<link rel="import" href="../bower_components/iron-flex-layout/classes/iron-flex-layout.html" />
+<link rel="import" href="~/custom_elements/element-div.html" />
+<link rel="import" href="~/custom_elements/tab.html" />
+<link rel="import" href="~/custom_elements/tab-coordinator.html" />
+<link rel="import" href="~/custom_elements/rounded-button.html">
+<link rel="stylesheet" href="~/Resources/styles.css" />
+
+<style>
+    /*All*/
+    body {
+        font-family: roboto;
+    }
+
+    .header {
+        margin-left: 3%;
+        margin-top: 5px;
+        color: #34753A;
+        margin-bottom: 3px;
+    }
+
+    .addSeason {
+        width: 100%;
+        height: 50px;
+        background: #C8E4CC;
+    }
+
+    .addBtn {
+        margin-left: 10px;
+    }
+
+    .newSeasonText {
+        font-weight: 400;
+        font-size: 20px;
+        margin-left: 10px;
+        color: #34753A;
+    }
+    /*All*/
+    .leagues{
+        width: 80%;
+        height: 825px;
+    }
+    .weeks{
+        width: 80%;
+        height: 825px;
+    }
+    .back{
+        height: 80px;
+        color: #34753A;
+        display: block;
+    }
+    .todo{
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    button {
+        position: relative;
+    }
+</style>
+<div class="container vertical layout">
+    <!--Head-->
+    <h2 class="header">AGUASCALIENTES</h2>
+    <tab-coordinator></tab-coordinator>
+    <div class="addSeason horizontal layout center">
+        <rounded-button class="addBtn" fontsize="30px" width="35px" height="35px">+<paper-ripple></paper-ripple></rounded-button>
+        <h1 class="newSeasonText">Añadir Nueva</h1>
+    </div>
+    <!--Head-->
+    <div class="container vertical layout">
+
+        <div class="container horizontal layout back">
+            <rounded-button style="margin-left: 15px;" class="self-center"><<paper-ripple></paper-ripple></rounded-button>
+            <h1 class="self-center" style="margin-left: 15px">Noviembre</h1>
+        </div>        
+
+        <div class="todo horizontal layout">
+            <!-- Leagues Container Div -->
+            <div class="vertical layout leagues">
+                <element-div content="Nueva Liga" background="#C8E4CC" button="+"></element-div>
+                <element-div content="Liga Pirules"></element-div>
+                <element-div content="Liga Beris es joto"></element-div>
+            </div>
+            <!-- Weeks Container Div -->
+            <div class=" vertical layout weeks">
+                <element-div content="Nueva Jornada" background="#C8E4CC" button="+"></element-div>
+                <element-div content="El Beris es bien joto"></element-div>
+                <element-div content="Beris el joto"></element-div>
+                <element-div content="Beris el joto"></element-div>
+                <element-div content="Beris el joto"></element-div>
+                <element-div content="Beris el joto"></element-div>
+                <element-div content="Beris el joto"></element-div>
+                <element-div content="Beris el joto"></element-div>
+            </div>
+        </div>
+    </div>
+</div>

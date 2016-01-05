@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="escorcenterdbModelStoreContainer" CdmEntityContainer="escorcenterdbEntities">
+    <EntitySetMapping Name="fields">
+      <EntityTypeMapping TypeName="escorcenterdbModel.field">
+        <MappingFragment StoreEntitySet="field">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="longitude" ColumnName="longitude" />
+          <ScalarProperty Name="latitude" ColumnName="latitude" />
+          <ScalarProperty Name="sport" ColumnName="sport" />
+          <ScalarProperty Name="enabled" ColumnName="enabled" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="leagues">
+      <EntityTypeMapping TypeName="escorcenterdbModel.league">
+        <MappingFragment StoreEntitySet="league">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Region" ColumnName="Region" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="matches">
+      <EntityTypeMapping TypeName="escorcenterdbModel.match">
+        <MappingFragment StoreEntitySet="match">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="week" ColumnName="week" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="team1" ColumnName="team1" />
+          <ScalarProperty Name="scoreTeam1" ColumnName="scoreTeam1" />
+          <ScalarProperty Name="team2" ColumnName="team2" />
+          <ScalarProperty Name="scoreTeam2" ColumnName="scoreTeam2" />
+          <ScalarProperty Name="field" ColumnName="field" />
+          <ScalarProperty Name="details" ColumnName="details" />
+          <ScalarProperty Name="finished" ColumnName="finished" />
+          <ScalarProperty Name="winner" ColumnName="winner" />
+          <ScalarProperty Name="draw" ColumnName="draw" />
+          <ScalarProperty Name="forfeit" ColumnName="forfeit" />
+          <ScalarProperty Name="enabled" ColumnName="enabled" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="notifications">
+      <EntityTypeMapping TypeName="escorcenterdbModel.notification">
+        <MappingFragment StoreEntitySet="notification">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="LeagueId" ColumnName="LeagueId" />
+          <ScalarProperty Name="TeamsId" ColumnName="TeamsId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="notificationtypes">
+      <EntityTypeMapping TypeName="escorcenterdbModel.notificationtype">
+        <MappingFragment StoreEntitySet="notificationtype">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="enabled" ColumnName="enabled" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="regions">
+      <EntityTypeMapping TypeName="escorcenterdbModel.region">
+        <MappingFragment StoreEntitySet="region">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="AreaLimitsText" ColumnName="AreaLimitsText" />
+          <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="seasons">
+      <EntityTypeMapping TypeName="escorcenterdbModel.season">
+        <MappingFragment StoreEntitySet="season">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="league" ColumnName="league" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="dateFrom" ColumnName="dateFrom" />
+          <ScalarProperty Name="dateTo" ColumnName="dateTo" />
+          <ScalarProperty Name="enabled" ColumnName="enabled" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="teams">
+      <EntityTypeMapping TypeName="escorcenterdbModel.team">
+        <MappingFragment StoreEntitySet="team">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="League" ColumnName="League" />
+          <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="weeks">
+      <EntityTypeMapping TypeName="escorcenterdbModel.week">
+        <MappingFragment StoreEntitySet="week">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="season" ColumnName="season" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="dateFrom" ColumnName="dateFrom" />
+          <ScalarProperty Name="dateTo" ColumnName="dateTo" />
+          <ScalarProperty Name="enabled" ColumnName="enabled" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="subscribedteams">
+      <EntityTypeMapping TypeName="escorcenterdbModel.subscribedteam">
+        <MappingFragment StoreEntitySet="subscribedteams">
+          <ScalarProperty Name="season" ColumnName="season" />
+          <ScalarProperty Name="team" ColumnName="team" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gamesdrawnviews">
+      <EntityTypeMapping TypeName="escorcenterdbModel.gamesdrawnview">
+        <MappingFragment StoreEntitySet="gamesdrawnview">
+          <ScalarProperty Name="League" ColumnName="League" />
+          <ScalarProperty Name="season" ColumnName="season" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="GamesDrawn" ColumnName="GamesDrawn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gamesplayedviews">
+      <EntityTypeMapping TypeName="escorcenterdbModel.gamesplayedview">
+        <MappingFragment StoreEntitySet="gamesplayedview">
+          <ScalarProperty Name="League" ColumnName="League" />
+          <ScalarProperty Name="season" ColumnName="season" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="GamesPlayed" ColumnName="GamesPlayed" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gameswonviews">
+      <EntityTypeMapping TypeName="escorcenterdbModel.gameswonview">
+        <MappingFragment StoreEntitySet="gameswonview">
+          <ScalarProperty Name="League" ColumnName="League" />
+          <ScalarProperty Name="season" ColumnName="season" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="GamesWon" ColumnName="GamesWon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="league_season_weekview">
+      <EntityTypeMapping TypeName="escorcenterdbModel.league_season_weekview">
+        <MappingFragment StoreEntitySet="league_season_weekview">
+          <ScalarProperty Name="league" ColumnName="league" />
+          <ScalarProperty Name="season" ColumnName="season" />
+          <ScalarProperty Name="week" ColumnName="week" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="scoreagainstviews">
+      <EntityTypeMapping TypeName="escorcenterdbModel.scoreagainstview">
+        <MappingFragment StoreEntitySet="scoreagainstview">
+          <ScalarProperty Name="League" ColumnName="League" />
+          <ScalarProperty Name="season" ColumnName="season" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ScoreAgainst" ColumnName="ScoreAgainst" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="scorefavorviews">
+      <EntityTypeMapping TypeName="escorcenterdbModel.scorefavorview">
+        <MappingFragment StoreEntitySet="scorefavorview">
+          <ScalarProperty Name="League" ColumnName="League" />
+          <ScalarProperty Name="season" ColumnName="season" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ScoreFavor" ColumnName="ScoreFavor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="scoretableviews">
+      <EntityTypeMapping TypeName="escorcenterdbModel.scoretableview">
+        <MappingFragment StoreEntitySet="scoretableview">
+          <ScalarProperty Name="season" ColumnName="season" />
+          <ScalarProperty Name="team" ColumnName="team" />
+          <ScalarProperty Name="GamesPlayed" ColumnName="GamesPlayed" />
+          <ScalarProperty Name="GamesWon" ColumnName="GamesWon" />
+          <ScalarProperty Name="GamesDrawn" ColumnName="GamesDrawn" />
+          <ScalarProperty Name="GamesLost" ColumnName="GamesLost" />
+          <ScalarProperty Name="ScoreFavor" ColumnName="ScoreFavor" />
+          <ScalarProperty Name="ScoreAgainst" ColumnName="ScoreAgainst" />
+          <ScalarProperty Name="ScoreDifference" ColumnName="ScoreDifference" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

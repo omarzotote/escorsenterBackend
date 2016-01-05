@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Seasons";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script src="../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+<link rel="import" href="../bower_components/iron-flex-layout/classes/iron-flex-layout.html" />
+<link rel="import" href="~/custom_elements/tab.html" />
+<link rel="import" href="~/custom_elements/tab-coordinator.html" />
+<link rel="import" href="~/custom_elements/rounded-button.html">
+<link rel="stylesheet" href="~/Resources/styles.css" />
+<link rel="import" href="~/custom_elements/common/green-cell.html" />
+
+<style>
+    body {
+        font-family: roboto;
+    }
+
+    .header {
+        margin-left: 3%;
+        margin-top: 5px;
+        color: #34753A;
+        margin-bottom: 3px;
+    }
+
+    .addSeason {
+        width: 100%;
+        height: 50px;
+        background: #C8E4CC;
+    }
+
+    .addBtn {
+        margin-left: 10px;
+    }
+
+    .newSeasonText {
+        font-weight: 400;
+        font-size: 20px;
+        margin-left: 10px;
+        color: #34753A;
+    }
+</style>
+<div class="container vertical layout">
+    <h2 class="header">@ViewBag.regionName</h2>
+    <tab-coordinator></tab-coordinator>
+    <div class="addSeason horizontal layout center">
+        <rounded-button class="addBtn" fontsize="30px" width="35px" height="35px">+</rounded-button>
+        <h1 class="newSeasonText">Añadir Nueva</h1>
+    </div>
+
+    <div class="container vertical layout">
+         <green-cell text="Noviembre"></green-cell>
+        <green-cell text="Diciembre"></green-cell>
+    </div>
+</div>

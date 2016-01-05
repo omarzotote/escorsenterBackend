@@ -1,0 +1,74 @@
+﻿<link rel="import" href="../bower_components/polymer/polymer.html" />
+<link rel="import" href="../bower_components/iron-media-query/iron-media-query.html" />
+<link rel="import" href="../bower_components/font-roboto/roboto.html" />
+<link rel="import" href="../bower_components/iron-input/iron-input.html" />
+
+<dom-module id="login-input">
+    <template>
+        <style>
+            :host {
+                width: 90%;
+                margin-top: 8px;
+                --text-color: #34753A;
+                --border-color: #34753A;
+                --background-color: #6AA973;
+            }
+
+            input {
+                width: 100%;
+                height: var(--height, 40px);
+                border: solid;
+                border-color: var(--border-color);
+                border-radius: var(--border-radius, 15px);
+                border-width: 1.5px;
+                outline: 0px;
+                background: var(--background-color);
+                color: var(--text-color, 20px);
+                text-align: center;
+                font-size: var(--font-size, 25px);
+                font-family: roboto;
+            }
+
+            /* Placeholder style */
+
+            ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+                color: var(--text-color);
+            }
+
+            :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+                color: var(--text-color);
+            }
+
+            ::-moz-placeholder { /* Mozilla Firefox 19+ */
+                color: var(--text-color);
+            }
+
+            :-ms-input-placeholder { /* Internet Explorer 10-11 */
+                color: var(--text-color);
+            }
+        </style>
+        <iron-media-query query="(max-device-width: 450px)" query-matches="{{ smallScreen }}"></iron-media-query>
+        <input is="iron-input" type="{{ type }}" placeholder="{{ placeholder }}" bind-value="{{ value }}" />
+    </template>
+    <script>
+        Polymer({
+            is: "login-input",
+            properties: {
+                type: String,
+                placeholder: String,
+                value: {
+                    type: String,
+                    notify: true
+                }
+            },
+            ready: function () {
+                if (this.smallScreen) {
+                    this.customStyle['--height'] = '80px';
+                    this.customStyle['--font-size'] = '40px';
+                    this.customStyle['--border-radius'] = '24px';
+                    this.updateStyles();
+                }
+            }
+        });
+    </script>
+</dom-module>

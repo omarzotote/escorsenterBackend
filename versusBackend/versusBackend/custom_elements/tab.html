@@ -1,0 +1,53 @@
+﻿<link rel="import" href="../bower_components/polymer/polymer.html" />
+<link rel="import" href="../bower_components/font-roboto/roboto.html" />
+<link rel="import" href="../bower_components/iron-media-query/iron-media-query.html" />
+<link rel="import" href="~/bower_components/paper-ripple/paper-ripple.html" />
+
+
+<dom-module id="custom-tab">
+    <template>
+        <style>
+            :host {
+                width: 100%;
+            }
+
+                :host ::content {
+                    color: green;
+                    font-weight: bold;
+                    font-size: 20px;
+                }
+
+
+            .tab {
+                width: 100%;
+                height: 36px;
+                background: var(--background-color, #E4F2E6);
+                text-align: center;
+                border-top-left-radius: 15px;
+                border-top-right-radius: 15px;
+                padding-top: 8px;
+            }
+
+            content h1 {
+                color: white;
+            }
+        </style>
+        <div class="tab" style="position:relative">
+            <content></content>
+            <paper-ripple></paper-ripple>
+        </div>
+    </template>
+    <script>
+        Polymer({
+            is: "custom-tab",
+            select: function () {
+                this.customStyle["--background-color"] = "#C8E4CC";
+                this.updateStyles();
+            },
+            unselect: function () {
+                this.customStyle["--background-color"] = "#E4F2E6";
+                this.updateStyles();
+            }
+        });
+    </script>
+</dom-module>

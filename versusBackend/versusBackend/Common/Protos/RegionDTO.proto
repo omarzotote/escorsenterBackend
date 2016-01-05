@@ -1,0 +1,9 @@
+package Common.DTO;
+
+message RegionDTO{
+	optional int64 Id = 1;
+	optional string Name = 2;
+	optional string Description = 3;
+	optional string AreaLimitsText = 4;
+	optional bool Enabled = 5;
+}

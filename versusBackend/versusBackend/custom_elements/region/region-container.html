@@ -1,0 +1,40 @@
+﻿<link rel="import" href="/bower_components/polymer/polymer.html" />
+<link rel="import" href="/bower_components/iron-flex-layout/classes/iron-flex-layout.html" />
+<link rel="import" href="/bower_components/iron-ajax/iron-ajax.html" />
+<link rel="stylesheet" href="/Resources/styles.css" />
+<link rel="import" href="../common/green-cell.html" />
+
+<dom-module id="region-container">
+    <template>
+        <style>
+            :host {
+                width: 100%;
+                height: 100%;
+            }
+
+            .regionContainer {
+                width: 100%;
+                height: 1000px;
+            }
+        </style>
+
+        <iron-ajax auto
+                   url="http://localhost/api/regions"
+                   method="GET"
+                   handle-as="json"
+                   on-response="handleResponse"></iron-ajax>
+        <div class="regionContainer vertical-layout">
+            <template is="dom-repeat" items="{{regionList}}">
+                <green-cell text="{{item._Name}}" url="http://localhost/region/league?regionId={{item._Id}}"></green-cell>
+            </template>
+        </div>
+    </template>
+    <script>
+        Polymer({
+            is: "region-container",
+            handleResponse: function (e, r) {
+                this.regionList = r.response._RegionList;
+            }
+        });
+    </script>
+</dom-module>

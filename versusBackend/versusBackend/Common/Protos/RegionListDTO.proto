@@ -1,0 +1,9 @@
+package Common.DTO;
+
+import "RegionDTO.proto";
+
+message RegionListDTO{
+
+	repeated RegionDTO RegionList = 1;
+
+}

@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewBag.Title = "Teams";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+<link rel="import" href="../bower_components/iron-flex-layout/classes/iron-flex-layout.html" />
+<link rel="import" href="~/custom_elements/element-div.html" />
+<link rel="import" href="~/custom_elements/tab.html" />
+<link rel="import" href="~/custom_elements/tab-coordinator.html" />
+<link rel="import" href="~/custom_elements/rounded-button.html">
+<link rel="stylesheet" href="~/Resources/styles.css" />
+<link rel="import" href="~/bower_components/paper-ripple/paper-ripple.html" />
+
+<style>
+    body {
+        font-family: roboto;
+    }
+
+    .header {
+        margin-left: 3%;
+        margin-top: 5px;
+        color: #34753A;
+        margin-bottom: 3px;
+    }
+
+    .addSeason {
+        width: 100%;
+        height: 50px;
+        background: #C8E4CC;
+    }
+
+    .addBtn {
+        margin-left: 10px;
+    }
+
+    .newSeasonText {
+        font-weight: 400;
+        font-size: 20px;
+        margin-left: 10px;
+        color: #34753A;
+    }
+
+    .col1 {
+        width: 80%;
+        height: 825px;
+    }
+
+    .col2 {
+        width: 80%;
+        height: 825px;
+    }
+
+    .back {
+        height: 80px;
+        color: #34753A;
+        display: block;
+    }
+
+    .todo {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    button {
+        position: relative;
+    }
+</style>
+
+<div class="container vertical layout">
+    <h2 class="header">AGUASCALIENTES</h2>
+    <tab-coordinator></tab-coordinator>
+    <div class="addSeason horizontal layout center">
+        <rounded-button class="addBtn" fontsize="30px" width="35px" height="35px">+<paper-ripple></paper-ripple></rounded-button>
+        <h1 class="newSeasonText">Añadir Nueva</h1>
+    </div>
+
+    <div class="container vertical layout">
+
+        <div class="container horizontal layout back">
+            <rounded-button style="margin-left: 15px;" class="self-center"><<paper-ripple></paper-ripple></rounded-button>
+            <h1 class="self-center" style="margin-left: 15px">Liga Pirules</h1>
+        </div>
+
+        <div class="vertical layout" style="margin-left: 10%;width: 40%;">
+            <element-div content="Nuevo Equipo" background="#C8E4CC" button="+"></element-div>
+        </div>
+
+        <div class="todo horizontal layout">
+            <!-- Column 1 Container Div -->
+            <div class="vertical layout col1">
+                <element-div content="Torus F.C."></element-div>
+                <element-div content="El equipo joto del Beris"></element-div>
+            </div>
+
+
+            <!-- Column 2 Container Div -->
+            <div class=" vertical layout col2">
+                <element-div content="Churrumais F.C."></element-div>
+            </div>
+        </div>
+    </div>
+</div>
